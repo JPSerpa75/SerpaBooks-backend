@@ -5,22 +5,22 @@ import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.serpa.serpabooks.models.dtos.EditoraDTO;
 import com.serpa.serpabooks.models.entities.Editora;
-import com.serpa.serpabooks.repositories.EditoraRepository;
+import com.serpa.serpabooks.repositories.IEditoraRepository;
 import com.serpa.serpabooks.utils.Utils;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class EditoraService {
 
-	@Autowired
-	private EditoraRepository editoraRepository;
+	private final IEditoraRepository editoraRepository;
 
-	@Autowired
-	private ModelMapper modelMapper;
+	private final ModelMapper modelMapper;
 
 	public EditoraDTO save(EditoraDTO dto) throws Exception {
 		validated(dto);

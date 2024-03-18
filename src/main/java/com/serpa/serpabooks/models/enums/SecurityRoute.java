@@ -28,6 +28,8 @@ public enum SecurityRoute {
 	EDITORA_GET("/editora", HttpMethod.GET, "ADMIN"),
 	
 	OUTRAS_ROTAS("/outras-rotas", HttpMethod.GET, "permitAll");
+	
+	//INFO_LIVRO("/info-livro", HttpMethod.GET, "permitAll");
 
 	private final String route;
 	private final HttpMethod method;

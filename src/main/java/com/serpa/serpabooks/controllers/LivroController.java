@@ -1,6 +1,5 @@
 package com.serpa.serpabooks.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,20 +15,21 @@ import com.serpa.serpabooks.models.dtos.LivroDTO;
 import com.serpa.serpabooks.services.LivroService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("livros")
+@RequiredArgsConstructor
 public class LivroController {
 
-	@Autowired
-	private LivroService livroService;
+	private final LivroService livroService;
 
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody @Valid LivroDTO dto) {
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(livroService.save(dto));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 
@@ -38,7 +38,7 @@ public class LivroController {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(livroService.getAll());
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 
@@ -47,7 +47,7 @@ public class LivroController {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(livroService.getById(id));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 
@@ -56,25 +56,34 @@ public class LivroController {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(livroService.update(id, dto));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(livroService.delete(id));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
-	
+
 	@PostMapping("/avaliar")
-	public ResponseEntity<?> avaliarLivro(){
+	public ResponseEntity<?> avaliarLivro() {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body("Vou usar aqui pra avaliar");
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+	}
+	
+	@GetMapping("/by-info-livro/{id}")
+	public ResponseEntity<?> getByIdInfoLivro(@PathVariable(value = "id") Long idInfoLivro) {
+		try {
+			return ResponseEntity.status(HttpStatus.OK).body(livroService.getByIdInfoLivro(idInfoLivro));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 

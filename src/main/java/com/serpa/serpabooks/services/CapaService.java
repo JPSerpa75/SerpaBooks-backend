@@ -5,22 +5,22 @@ import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.serpa.serpabooks.models.dtos.CapaDTO;
 import com.serpa.serpabooks.models.entities.Capa;
-import com.serpa.serpabooks.repositories.CapaRepository;
+import com.serpa.serpabooks.repositories.ICapaRepository;
 import com.serpa.serpabooks.utils.Utils;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CapaService {
 
-	@Autowired
-	private CapaRepository capaRepository;
+	private final ICapaRepository capaRepository;
 
-	@Autowired
-	private ModelMapper modelMapper;
+	private final ModelMapper modelMapper;
 
 	public CapaDTO save(CapaDTO dto) throws Exception {
 		validated(dto);

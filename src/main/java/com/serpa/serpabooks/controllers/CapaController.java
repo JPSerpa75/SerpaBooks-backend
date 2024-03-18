@@ -1,6 +1,5 @@
 package com.serpa.serpabooks.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,20 +15,21 @@ import com.serpa.serpabooks.models.dtos.CapaDTO;
 import com.serpa.serpabooks.services.CapaService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("capa")
+@RequiredArgsConstructor
 public class CapaController {
 
-	@Autowired
-	private CapaService capaService;
+	private final CapaService capaService;
 
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody @Valid CapaDTO dto) {
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(capaService.save(dto));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 
@@ -38,7 +38,7 @@ public class CapaController {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(capaService.getAll());
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 
@@ -47,7 +47,7 @@ public class CapaController {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(capaService.getById(id));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 
@@ -56,7 +56,7 @@ public class CapaController {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(capaService.update(id, dto));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 
@@ -65,7 +65,7 @@ public class CapaController {
 		try {
 			return ResponseEntity.status(HttpStatus.OK).body(capaService.delete(id));
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno! " + e.getMessage());
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
 

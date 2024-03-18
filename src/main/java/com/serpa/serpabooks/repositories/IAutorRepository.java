@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.serpa.serpabooks.models.entities.Autor;
 
 @Repository
-public interface AutorRepository extends JpaRepository<Autor, Long> {
+public interface IAutorRepository extends JpaRepository<Autor, Long> {
 
 }

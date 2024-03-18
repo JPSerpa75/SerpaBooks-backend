@@ -33,6 +33,6 @@ public class Autor implements Serializable {
 	private String nomeAutor;
 
 	@OneToMany(mappedBy = "autor", fetch = FetchType.LAZY)
-	private List<Livro> livros;
+	private List<InfoLivro> infoLivros;
 
 }

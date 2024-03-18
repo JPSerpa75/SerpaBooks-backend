@@ -1,5 +1,9 @@
 package com.serpa.serpabooks.models.dtos;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +15,7 @@ public class AutorDTO {
 
 	private Long id;
 	private String nomeAutor;
-//	private List<LivroDTO> livros;
+	@JsonIgnore
+	private List<InfoLivroDTO> infoLivros;
 
 }

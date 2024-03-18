@@ -1,5 +1,9 @@
 package com.serpa.serpabooks.models.dtos;
 
+import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,8 +14,11 @@ import lombok.NoArgsConstructor;
 public class AvaliacaoDTO {
 
 	private Long id;
+	private String descricaoAvaliacao;
+	private LocalDateTime dataAvaliacao;
 	private Float valorAvaliacao;
-	private Long idLivro;
-	private Long idUsuario;
+	private UsuarioDTO usuario;
+	@JsonIgnore
+	private InfoLivroDTO infoLivro;
 
 }

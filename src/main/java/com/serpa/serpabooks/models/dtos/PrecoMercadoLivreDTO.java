@@ -1,6 +1,6 @@
 package com.serpa.serpabooks.models.dtos;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -11,10 +11,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CapaDTO {
+public class PrecoMercadoLivreDTO {
 
 	private Long id;
-	private String descricaoCapa;
+	private Float preco;
+	private String img;
+	private String link;
+	private LocalDateTime dataCadastro;
 	@JsonIgnore
-	private List<LivroDTO> livros;
+	private LivroDTO livro;
+
 }

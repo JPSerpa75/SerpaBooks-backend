@@ -20,31 +20,34 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "AVALIACAO")
-public class Avaliacao implements Serializable {
+@Table(name = "PRECO_AMAZON")
+public class PrecoAmazon implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_AVALIACAO")
+	@Column(name = "ID_PRECO_AMAZON")
 	private Long id;
 
-	@Column(name = "DS_AVALIACAO")
-	private String descricaoAvaliacao;
+	@Column(name = "PRECO_AMAZON")
+	private Float preco;
 
-	@Column(name = "DT_AVALIACAO")
-	private LocalDateTime dataAvaliacao;
+	@Column(name = "IMG_AMAZON")
+	private String img;
 
-	@Column(name = "VALOR_AVALIACAO")
-	private Float valorAvaliacao;
+	@Column(name = "LINK_AMAZON")
+	private String link;
+
+	@Column(name = "DT_CADASTRO_PRECO_AMAZON")
+	private LocalDateTime dataCadastro;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_INFO_LIVRO", nullable = false)
-	private InfoLivro infoLivro;
+	@JoinColumn(name = "ID_LIVRO", nullable = false)
+	private Livro livro;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ID_USUARIO", nullable = false)
-	private Usuario usuario;
+	@JoinColumn(name = "ID_CAPA", nullable = false)
+	private Capa capa;
 
 }

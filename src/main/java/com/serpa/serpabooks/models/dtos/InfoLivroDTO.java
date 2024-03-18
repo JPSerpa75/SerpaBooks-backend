@@ -11,10 +11,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CapaDTO {
+public class InfoLivroDTO {
 
 	private Long id;
-	private String descricaoCapa;
+	private String titulo;
+	private Float notaLivro;
+	private String idioma;
+	private String resumo;
+	private String sinopse;
+	private AutorDTO autor;
+	private List<AvaliacaoDTO> avaliacoes;
 	@JsonIgnore
 	private List<LivroDTO> livros;
+
 }

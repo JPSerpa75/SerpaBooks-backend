@@ -1,6 +1,6 @@
 package com.serpa.serpabooks.models.entities;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class Usuario implements UserDetails {
 	private String nomeUsuario;
 
 	@Column(name = "DT_NASCIMENTO_USUARIO")
-	private LocalDateTime dataNascimento;
+	private LocalDate dataNascimento;
 
 	@Column(name = "ROLE_USUARIO")
 	private UserRoleEnum role;
@@ -54,7 +54,7 @@ public class Usuario implements UserDetails {
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	private List<Avaliacao> avaliacoes;
 
-	public Usuario(String login, String senha, String nome, LocalDateTime dtNascimento, UserRoleEnum role) {
+	public Usuario(String login, String senha, String nome, LocalDate dtNascimento, UserRoleEnum role) {
 		this.login = login;
 		this.senha = senha;
 		this.nomeUsuario = nome;

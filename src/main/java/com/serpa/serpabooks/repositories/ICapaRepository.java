@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.serpa.serpabooks.models.entities.Capa;
 
 @Repository
-public interface CapaRepository extends JpaRepository<Capa, Long> {
+public interface ICapaRepository extends JpaRepository<Capa, Long> {
 
 }

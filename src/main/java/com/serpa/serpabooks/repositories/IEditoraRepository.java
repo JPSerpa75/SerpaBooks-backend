@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.serpa.serpabooks.models.entities.Editora;
 
 @Repository
-public interface EditoraRepository extends JpaRepository<Editora, Long> {
+public interface IEditoraRepository extends JpaRepository<Editora, Long> {
 
 }

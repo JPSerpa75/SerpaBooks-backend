@@ -5,22 +5,22 @@ import java.util.List;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.serpa.serpabooks.models.dtos.AutorDTO;
 import com.serpa.serpabooks.models.entities.Autor;
-import com.serpa.serpabooks.repositories.AutorRepository;
+import com.serpa.serpabooks.repositories.IAutorRepository;
 import com.serpa.serpabooks.utils.Utils;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class AutorService {
 
-	@Autowired
-	private AutorRepository autorRepository;
+	private final IAutorRepository autorRepository;
 
-	@Autowired
-	private ModelMapper modelMapper;
+	private final ModelMapper modelMapper;
 
 	public AutorDTO save(AutorDTO dto) throws Exception {
 		validated(dto);

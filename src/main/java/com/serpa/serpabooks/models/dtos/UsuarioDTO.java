@@ -1,8 +1,9 @@
 package com.serpa.serpabooks.models.dtos;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.serpa.serpabooks.models.enums.UserRoleEnum;
 
 import lombok.AllArgsConstructor;
@@ -18,7 +19,8 @@ public class UsuarioDTO {
 	private String login;
 	private String senha;
 	private String nomeUsuario;
-	private LocalDateTime dataNascimento;
+	private LocalDate dataNascimento;
 	private UserRoleEnum role;
+	@JsonIgnore
 	private List<AvaliacaoDTO> avaliacoes;
 }
