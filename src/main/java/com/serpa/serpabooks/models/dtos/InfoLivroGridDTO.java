@@ -18,6 +18,7 @@ public class InfoLivroGridDTO {
 	private Float notaLivro;
 	private String idioma;
 	private String resumo;
+	private String sinopse;
 	private String descricaoCapa;
 	private String nomeEditora;
 	private String urlImagem;

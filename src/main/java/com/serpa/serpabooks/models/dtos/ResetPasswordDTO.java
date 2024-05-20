@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class ResetPasswordDTO {
 
-	private String loginUsuario;
+	private String emailUsuario;
 	private String nomeUsuario;
 	private LocalDate dataNascimentoUsuario;
 	private String novaSenha;

@@ -39,7 +39,7 @@ public class PrecoMercadoLivre implements Serializable {
 	@Column(name = "LINK_MERCADO_LIVRE")
 	private String link;
 
-	@Column(name = "DT_CADASTRO_PRECO_MERCADO_LIVRE")
+	@Column(name = "DT_CADASTRO_MERCADO_LIVRE")
 	private LocalDateTime dataCadastro;
 
 	@ManyToOne(fetch = FetchType.LAZY)

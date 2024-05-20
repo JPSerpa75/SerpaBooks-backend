@@ -25,9 +25,9 @@ public enum SecurityRoute {
 	EDITORA_SAVE("/editora", HttpMethod.POST, "ADMIN"),
 	EDITORA_UPDATE("/editora", HttpMethod.PUT, "ADMIN"),
 	EDITORA_DELETE("/editora", HttpMethod.DELETE, "ADMIN"),
-	EDITORA_GET("/editora", HttpMethod.GET, "ADMIN"),
+	EDITORA_GET("/editora", HttpMethod.GET, "ADMIN");
 	
-	OUTRAS_ROTAS("/outras-rotas", HttpMethod.GET, "permitAll");
+//	OUTRAS_ROTAS("/outras-rotas", HttpMethod.GET, "permitAll");
 	
 	//INFO_LIVRO("/info-livro", HttpMethod.GET, "permitAll");
 

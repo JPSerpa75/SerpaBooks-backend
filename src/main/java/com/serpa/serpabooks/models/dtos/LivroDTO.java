@@ -3,6 +3,8 @@ package com.serpa.serpabooks.models.dtos;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ public class LivroDTO {
 	private LocalDateTime dataCadastro;
 	private EditoraDTO editora;
 	private CapaDTO capa;
+	@JsonIgnore
 	private InfoLivroDTO infoLivro;
 
 }

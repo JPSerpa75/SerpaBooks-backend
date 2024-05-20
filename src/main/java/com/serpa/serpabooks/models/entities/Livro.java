@@ -61,4 +61,8 @@ public class Livro implements Serializable {
 	@JoinColumn(name = "ID_INFO_LIVRO", nullable = false)
 	private InfoLivro infoLivro;
 
+	public Livro(Long idLivro) {
+		this.setId(idLivro);
+	}
+	
 }

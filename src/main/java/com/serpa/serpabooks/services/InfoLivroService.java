@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.serpa.serpabooks.models.dtos.FilterDTO;
 import com.serpa.serpabooks.models.dtos.InfoLivroDTO;
 import com.serpa.serpabooks.models.dtos.InfoLivroGridDTO;
+import com.serpa.serpabooks.models.dtos.InfoLivroUpdateDTO;
 import com.serpa.serpabooks.models.entities.InfoLivro;
 import com.serpa.serpabooks.repositories.IInfoLivroRepository;
 import com.serpa.serpabooks.repositories.impl.InfoLivroRepositoryImpl;
@@ -42,6 +43,24 @@ public class InfoLivroService {
 
 		return modelMapper.map(livroOptional, InfoLivroDTO.class);
 
+	}
+
+	public InfoLivroDTO save(InfoLivroDTO dto) {
+		var infoLivro = modelMapper.map(dto, InfoLivro.class);
+		return modelMapper.map(repository.save(infoLivro), InfoLivroDTO.class);
+	}
+
+	public InfoLivroDTO updateResumoSinopse(InfoLivroUpdateDTO dto) throws Exception {
+		var infoLivro = repository.findById(dto.getId());
+
+		if (infoLivro == null) {
+			throw new Exception("Livro não encontrado ");
+		}
+
+		infoLivro.get().setResumo(dto.getResumo());
+		infoLivro.get().setSinopse(dto.getSinopse());
+
+		return modelMapper.map(repository.save(infoLivro.get()), InfoLivroDTO.class);
 	}
 
 }

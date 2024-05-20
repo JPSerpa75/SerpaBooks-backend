@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class UsuarioDTO {
 
 	private Long id;
-	private String login;
+	private String email;
 	private String senha;
 	private String nomeUsuario;
 	private LocalDate dataNascimento;

@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class AuthenticationDTO {
 
-	private String login;
+	private String email;
 	private String senha;
 }

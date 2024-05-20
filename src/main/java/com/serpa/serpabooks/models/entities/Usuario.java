@@ -12,6 +12,8 @@ import com.serpa.serpabooks.models.enums.UserRoleEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,8 +38,8 @@ public class Usuario implements UserDetails {
 	@Column(name = "ID_USUARIO")
 	private Long id;
 
-	@Column(name = "LOGIN_USUARIO", unique = true)
-	private String login;
+	@Column(name = "EMAIL_USUARIO", unique = true)
+	private String email;
 
 	@Column(name = "SENHA_USUARIO")
 	private String senha;
@@ -49,13 +51,14 @@ public class Usuario implements UserDetails {
 	private LocalDate dataNascimento;
 
 	@Column(name = "ROLE_USUARIO")
+	@Enumerated(EnumType.STRING)
 	private UserRoleEnum role;
 
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	private List<Avaliacao> avaliacoes;
 
-	public Usuario(String login, String senha, String nome, LocalDate dtNascimento, UserRoleEnum role) {
-		this.login = login;
+	public Usuario(String email, String senha, String nome, LocalDate dtNascimento, UserRoleEnum role) {
+		this.email = email;
 		this.senha = senha;
 		this.nomeUsuario = nome;
 		this.dataNascimento = dtNascimento;
@@ -77,7 +80,7 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return login;
+		return email;
 	}
 
 	@Override

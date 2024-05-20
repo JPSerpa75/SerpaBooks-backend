@@ -20,11 +20,11 @@ public class AuthenticationService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return usuarioRepository.findByLogin(username);
+		return usuarioRepository.findByEmail(username);
 	}
 
 	public void resetPassword(@Valid ResetPasswordDTO dto) throws Exception {
-		var usuario = usuarioRepository.findByLoginAndDataNascimento(dto.getLoginUsuario(), dto.getDataNascimentoUsuario());
+		var usuario = usuarioRepository.findByEmailAndDataNascimento(dto.getEmailUsuario(), dto.getDataNascimentoUsuario());
 
 		if (usuario == null || (!usuario.getNomeUsuario().equals(dto.getNomeUsuario()))) {
 			throw new Exception("Não foi encontrado usuário com essas informações!");

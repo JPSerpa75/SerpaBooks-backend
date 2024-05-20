@@ -1,15 +1,18 @@
 package com.serpa.serpabooks.models.dtos;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-public class AutorDTO {
+@Getter
+@Setter
+public class InfoLivroUpdateDTO {
 
 	private Long id;
-	private String nomeAutor;
+	private String resumo;
+	private String sinopse;
 
 }

@@ -9,8 +9,8 @@ import com.serpa.serpabooks.models.entities.Usuario;
 
 public interface IUsuarioRepository extends JpaRepository<Usuario, Long> {
 
-	public UserDetails findByLogin(String login);
+	public UserDetails findByEmail(String email);
 
-	public Usuario findByLoginAndDataNascimento(String login, LocalDate dataNascimento);
+	public Usuario findByEmailAndDataNascimento(String email, LocalDate dataNascimento);
 
 }

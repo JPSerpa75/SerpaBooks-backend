@@ -24,7 +24,10 @@ public class TokenService {
 			Algorithm algorithm = Algorithm.HMAC256(secret);
 			String token = JWT.create()
 					.withIssuer("serpa-books")
-					.withSubject(usuario.getLogin())
+					.withSubject(usuario.getEmail())
+					.withClaim("id", usuario.getId())
+					.withClaim("nome", usuario.getNomeUsuario())
+					.withClaim("role", usuario.getRole().getRole())
 					.withExpiresAt(getExpirationDate())
 					.sign(algorithm);
 			

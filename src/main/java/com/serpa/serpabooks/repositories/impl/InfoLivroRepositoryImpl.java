@@ -24,8 +24,16 @@ public class InfoLivroRepositoryImpl {
 		montarQueryAndFilters(hql, dto);
 
 		var query = entityManager.createQuery(hql.toString(), InfoLivroGridDTO.class);
-		if (dto != null && dto.getTextoChave() != null) {
+		if (dto != null && dto.getTextoChave() != null && !dto.getTextoChave().isBlank()) {
 			query.setParameter("textoChave", dto.getTextoChave().toLowerCase());
+		}
+
+		if (dto.getIdsAutores() != null && !dto.getIdsAutores().isEmpty()) {
+			query.setParameter("idsAutores", dto.getIdsAutores());
+		}
+
+		if (dto.getIdsEditoras() != null && !dto.getIdsEditoras().isEmpty()) {
+			query.setParameter("idsEditoras", dto.getIdsEditoras());
 		}
 
 		query.setFirstResult((int) pageable.getOffset());
@@ -42,8 +50,15 @@ public class InfoLivroRepositoryImpl {
 		montarQueryAndFilters(hql, dto);
 
 		var query = entityManager.createQuery(hql.toString(), Long.class);
-		if (dto != null && dto.getTextoChave() != null) {
+		if (dto != null && dto.getTextoChave() != null && !dto.getTextoChave().isBlank()) {
 			query.setParameter("textoChave", dto.getTextoChave().toLowerCase());
+		}
+		if (dto.getIdsAutores() != null && !dto.getIdsAutores().isEmpty()) {
+			query.setParameter("idsAutores", dto.getIdsAutores());
+		}
+
+		if (dto.getIdsEditoras() != null && !dto.getIdsEditoras().isEmpty()) {
+			query.setParameter("idsEditoras", dto.getIdsEditoras());
 		}
 
 		return query.getSingleResult();
@@ -56,6 +71,7 @@ public class InfoLivroRepositoryImpl {
 		hql.append("	il.notaLivro as notaLivro, ");
 		hql.append("	il.idioma as idioma, ");
 		hql.append("	il.resumo as resumo, ");
+		hql.append("	il.sinopse as sinopse, ");
 		hql.append("	c.descricaoCapa as descricaoCapa, ");
 		hql.append("	e.nomeEditora as nomeEditora, ");
 		hql.append("	l.urlImagem as urlImagem, ");
@@ -70,16 +86,24 @@ public class InfoLivroRepositoryImpl {
 		hql.append(" JOIN Editora e on e.id = l.editora.id ");
 		hql.append(" JOIN Capa c on c.id = l.capa.id ");
 		hql.append(" JOIN Autor a on a.id = il.autor.id ");
+		hql.append(" WHERE 1=1 ");
 
-		if (dto != null && dto.getTextoChave() != null) {
-			hql.append(" WHERE ");
-			hql.append("	lower(il.titulo) like CONCAT('%', :textoChave, '%') ");
+		if (dto != null && dto.getTextoChave() != null && !dto.getTextoChave().isBlank()) {
+			hql.append("	AND ( lower(il.titulo) like CONCAT('%', :textoChave, '%') ");
 			hql.append(" 	OR cast(il.notaLivro as char) like CONCAT('%', :textoChave, '%') ");
 			hql.append(" 	OR lower(il.idioma) like CONCAT('%', :textoChave, '%') ");
 			hql.append("	OR lower(il.resumo) like CONCAT('%', :textoChave, '%') ");
 			hql.append("	OR lower(c.descricaoCapa) like CONCAT('%', :textoChave, '%') ");
 			hql.append("	OR lower(e.nomeEditora) like CONCAT('%', :textoChave, '%') ");
-			hql.append("	OR lower(a.nomeAutor) like CONCAT('%', :textoChave, '%') ");
+			hql.append("	OR lower(a.nomeAutor) like CONCAT('%', :textoChave, '%') )");
+		}
+
+		if (dto.getIdsAutores() != null && !dto.getIdsAutores().isEmpty()) {
+			hql.append("	AND a.id in :idsAutores ");
+		}
+
+		if (dto.getIdsEditoras() != null && !dto.getIdsEditoras().isEmpty()) {
+			hql.append("	AND e.id in :idsEditoras ");
 		}
 
 		hql.append(" ORDER BY il.notaLivro DESC ");
